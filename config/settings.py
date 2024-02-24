@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-DJANGO_APP = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -43,7 +43,9 @@ DJANGO_APP = [
     "django.contrib.staticfiles",
 ]
 
-PROJECT_APP = [
+THIRD_PARTY_APPS = ["django_countries"]
+
+PROJECT_APPS = [
     "conservations",
     "reservations",
     "reviews",
@@ -52,7 +54,7 @@ PROJECT_APP = [
     "wishlists",
 ]
 
-INSTALLED_APPS = DJANGO_APP + PROJECT_APP
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -143,4 +145,4 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
