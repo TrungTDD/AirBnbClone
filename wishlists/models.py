@@ -13,3 +13,6 @@ class Wishlist(core_models.AbstractTimeStamp):
 
     def __str__(self):
         return self.name
+
+    def total_rooms(self):
+        return self.rooms.count()

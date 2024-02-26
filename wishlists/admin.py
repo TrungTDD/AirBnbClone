@@ -5,4 +5,9 @@ from .models import Wishlist
 # Register your models here.
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "name",
+        "total_rooms",
+    )
+
+    filter_horizontal = ("rooms",)

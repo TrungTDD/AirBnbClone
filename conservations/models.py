@@ -9,7 +9,13 @@ class Conversation(core_models.AbstractTimeStamp):
     participants = models.ManyToManyField(user_models.User, blank=True)
 
     def __str__(self):
-        return self.created
+        usernames = []
+        for p in self.participants.all():
+            usernames.append(p.username)
+        return ", ".join(usernames)
+
+    def total_messages(self):
+        return self.message_set.count()
 
 
 class Message(core_models.AbstractTimeStamp):

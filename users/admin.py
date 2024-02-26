@@ -23,3 +23,5 @@ class CustomerAdmin(UserAdmin):
             },
         ),
     )
+
+    list_filter = UserAdmin.list_filter + ("superhost",)
