@@ -33,8 +33,11 @@ class RoomAdmin(admin.ModelAdmin):
         "baths",
         "bedrooms",
         "instant_book",
-        "count_amenities",
         "total_rating",
+        "total_photos",
+        "count_amenities",
+        "total_facilities",
+        "total_rules",
     )
     list_filter = (
         "city",
@@ -51,6 +54,18 @@ class RoomAdmin(admin.ModelAdmin):
 
     def count_amenities(self, obj):
         return obj.amenities.all().count()
+    
+    def total_photos(self, obj):
+        return obj.photo_set.all().count()
+    
+    def total_amenities(self, obj):
+        return obj.amenities.all().count()
+    
+    def total_facilities(self, obj):
+        return obj.facilities.all().count()
+    
+    def total_rules(self, obj):
+        return obj.rules.all().count()
 
 
 @admin.register(models.Photo)

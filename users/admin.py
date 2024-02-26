@@ -7,6 +7,17 @@ from . import models
 
 @admin.register(models.User)
 class CustomerAdmin(UserAdmin):
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "gender",
+        "birthdate",
+        "language",
+        "currency",
+        "superhost",
+    )
+
     fieldsets = UserAdmin.fieldsets + (
         (
             "Custom Profile",
@@ -24,4 +35,4 @@ class CustomerAdmin(UserAdmin):
         ),
     )
 
-    list_filter = UserAdmin.list_filter + ("superhost",)
+    list_filter = UserAdmin.list_filter + ("superhost", "currency")

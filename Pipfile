@@ -10,6 +10,8 @@ cryptography = "*"
 pillow = "*"
 django-countries = "*"
 django-debug-toolbar = "*"
+django-seed = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

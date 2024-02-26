@@ -53,15 +53,22 @@ class Room(core_models.AbstractTimeStamp):
     room_type = models.ForeignKey(
         RoomType, on_delete=models.SET_NULL, null=True, related_name="rooms"
     )
-    amenities = models.ManyToManyField(Amenity, related_name="rooms")
-    facilities = models.ManyToManyField(Facility, related_name="rooms")
-    rules = models.ManyToManyField(Rule, related_name="rooms")
+    amenities = models.ManyToManyField(Amenity, related_name="rooms", blank=True)
+    facilities = models.ManyToManyField(Facility, related_name="rooms", blank=True)
+    rules = models.ManyToManyField(Rule, related_name="rooms", blank=True)
 
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        self.city = str.capitalize(self.city)
+        super().save(*args, **kwargs)  # Call the real save() method
+
     def total_rating(self):
         queryset = self.reviews.all()
+        if len(queryset) == 0:
+            return 0
+
         review_point = 0
         for review in queryset:
             review_point += review.avg_review()

@@ -20,11 +20,11 @@ class User(AbstractUser):
     CURRENCY = [(CURRENCY_USD, "USD"), (CURRENCY_VND, "VND")]
 
     avatar = models.ImageField(null=True)
-    gender = models.CharField(max_length=255, choices=GENDER, default=MALE_GENDER)
+    gender = models.CharField(max_length=255, choices=GENDER)
     bio = models.TextField(default="")
     birthdate = models.DateField(null=True)
     language = models.CharField(
         max_length=255, choices=LANGUAGE, default=LANGUAGE_ENGLISH
     )
-    currency = models.CharField(max_length=255, choices=CURRENCY, default=CURRENCY_USD)
+    currency = models.CharField(max_length=255, choices=CURRENCY)
     superhost = models.BooleanField(default=False)
