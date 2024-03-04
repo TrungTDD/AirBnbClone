@@ -9,9 +9,11 @@ pymysql = "*"
 cryptography = "*"
 pillow = "*"
 django-countries = "*"
-django-debug-toolbar = "*"
 django-seed = "*"
 psycopg2-binary = "*"
+django-debug-toolbar = "==3.4.0"
+django-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 

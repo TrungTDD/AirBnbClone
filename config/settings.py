@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import pymysql
+import os
 
 pymysql.version_info = (1, 4, 6, "final", 0)
 pymysql.install_as_MySQLdb()
@@ -54,7 +55,7 @@ PROJECT_APPS = [
     "wishlists",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS +PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -153,3 +154,11 @@ AUTH_USER_MODEL = "users.User"
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "uploads")
 
 MEDIA_URL = "/media/"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# GITHUB OAUTH
+GITHUB_CLIENT_ID=os.getenv("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET=os.getenv("GITHUB_CLIENT_SECRET")

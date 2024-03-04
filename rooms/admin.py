@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.db.models import Avg, Sum
+from django.db.models.query import QuerySet
+from django.http import HttpRequest
 from django.utils.safestring import mark_safe
 from . import models
 
@@ -35,7 +37,7 @@ class RoomAdmin(admin.ModelAdmin):
         "instant_book",
         "total_rating",
         "total_photos",
-        "count_amenities",
+        "total_amenities",
         "total_facilities",
         "total_rules",
     )
@@ -52,20 +54,20 @@ class RoomAdmin(admin.ModelAdmin):
     ordering = ("price",)
     inlines = (PhotoInlineAdmin,)
 
-    def count_amenities(self, obj):
-        return obj.amenities.all().count()
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related("amenities", "facilities", "rules", "photo_set")
     
     def total_photos(self, obj):
-        return obj.photo_set.all().count()
+        return obj.photo_set.count()
     
     def total_amenities(self, obj):
-        return obj.amenities.all().count()
+        return obj.amenities.count()
     
     def total_facilities(self, obj):
-        return obj.facilities.all().count()
+        return obj.facilities.count()
     
     def total_rules(self, obj):
-        return obj.rules.all().count()
+        return obj.rules.count()
 
 
 @admin.register(models.Photo)

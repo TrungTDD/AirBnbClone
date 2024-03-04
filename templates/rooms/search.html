@@ -1,0 +1,26 @@
+{% include "base.html" %}
+
+{% block body %}
+    <div>
+        <form method="get" action='{% url "rooms:search" %}'>
+            <!-- {% csrf_token %} -->
+            {{form.as_p}}
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <h1>Search Result</h1>
+        {% for room in rooms %}
+            <h3>{{room}}</h3>
+        {% endfor %}
+
+        <div>
+            <ul>
+                {% for page in rooms.paginator.page_range %}
+                    <a href='?{{url_parameter}}&page={{page}}'>{{page}}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+{% endblock body %}
